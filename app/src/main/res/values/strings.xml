@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">BitFit</string>
+    <string name="add_new_food">Record New Entry</string>
+    <string name="food_name_hint">Item / Activity Name (e.g., Yogurt)</string>
+    <string name="calories_hint">Calories (e.g., 120)</string>
+    <string name="notes_hint">Notes / Feeling (e.g., Morning snack)</string>
+    <string name="save_food">Save Entry</string>
+    <string name="add_photo">Add / Change Photo</string>
+    <string name="average_calories">Average Calories</string>
+    <string name="total_entries">Total Entries</string>
+    <string name="min_calories">Min Calories</string>
+    <string name="max_calories">Max Calories</string>
+    <string name="no_entries_yet">No entries recorded yet!\nTap below to add your first entry.</string>
+</resources>
