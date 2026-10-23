@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".LogListFragment">
+
+    <!-- Empty State Container -->
+    <LinearLayout
+        android:id="@+id/emptyStateView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@android:drawable/ic_menu_today"
+            app:tint="@color/text_secondary"
+            android:contentDescription="Empty state icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/no_entries_yet"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Entries List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEntries"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp"
+        tools:listitem="@layout/item_fit" />
+
+    <!-- Floating Action Button / Add Button at bottom center -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddEntry"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:paddingHorizontal="24dp"
+        android:text="@string/add_new_food"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/primary_color"
+        app:cornerRadius="28dp"
+        app:elevation="6dp"
+        app:icon="@android:drawable/ic_input_add" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

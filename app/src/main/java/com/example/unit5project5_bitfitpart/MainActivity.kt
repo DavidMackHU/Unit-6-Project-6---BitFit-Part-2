@@ -1,31 +1,16 @@
 package com.example.unit5project5_bitfitpart
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.button.MaterialButton
-import kotlinx.coroutines.launch
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var rvEntries: RecyclerView
-    private lateinit var emptyStateView: View
-    private lateinit var tvAvgCalories: TextView
-    private lateinit var tvTotalEntries: TextView
-    private lateinit var tvMinMaxCalories: TextView
-    private lateinit var btnAddEntry: MaterialButton
-
-    private lateinit var adapter: FitAdapter
+    private lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,48 +23,34 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        rvEntries = findViewById(R.id.rvEntries)
-        emptyStateView = findViewById(R.id.emptyStateView)
-        tvAvgCalories = findViewById(R.id.tvAvgCalories)
-        tvTotalEntries = findViewById(R.id.tvTotalEntries)
-        tvMinMaxCalories = findViewById(R.id.tvMinMaxCalories)
-        btnAddEntry = findViewById(R.id.btnAddEntry)
+        bottomNavigation = findViewById(R.id.bottomNavigation)
 
-        adapter = FitAdapter()
-        rvEntries.layoutManager = LinearLayoutManager(this)
-        rvEntries.adapter = adapter
+        val logListFragment = LogListFragment()
+        val dashboardFragment = DashboardFragment()
 
-        btnAddEntry.setOnClickListener {
-            val intent = Intent(this, DetailActivity::class.java)
-            startActivity(intent)
+        // Set default fragment
+        if (savedInstanceState == null) {
+            replaceFragment(logListFragment)
         }
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                (application as BitFitApplication).db.bitFitDao().getAll().collect { entries ->
-                    adapter.updateItems(entries)
-
-                    if (entries.isEmpty()) {
-                        emptyStateView.visibility = View.VISIBLE
-                        rvEntries.visibility = View.GONE
-                        tvAvgCalories.text = "0"
-                        tvTotalEntries.text = "0"
-                        tvMinMaxCalories.text = "0 / 0"
-                    } else {
-                        emptyStateView.visibility = View.GONE
-                        rvEntries.visibility = View.VISIBLE
-
-                        val totalCalories = entries.sumOf { it.calories }
-                        val avgCalories = totalCalories / entries.size
-                        val minCal = entries.minOf { it.calories }
-                        val maxCal = entries.maxOf { it.calories }
-
-                        tvAvgCalories.text = avgCalories.toString()
-                        tvTotalEntries.text = entries.size.toString()
-                        tvMinMaxCalories.text = "$minCal / $maxCal"
-                    }
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_log -> {
+                    replaceFragment(logListFragment)
+                    true
                 }
+                R.id.action_dashboard -> {
+                    replaceFragment(dashboardFragment)
+                    true
+                }
+                else -> false
             }
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 }

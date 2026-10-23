@@ -1,27 +1,29 @@
-# Android Project 6 - *Name of App Here*
+# Android Project 6 - BitFit Part 2
 
-Submitted by: **Your Name Here**
+Submitted by: **David Mack**
 
-**Name of your app** is a health metrics app that allows users to track ... [TODO] 
+**BitFit** is a multi-screen health metrics app that allows users to track daily nutrition, calories, notes, and photos, featuring a dedicated Dashboard Fragment, navigation bar UI, and trend analytics.
 
-Time spent: **X** hours spent in total
+Time spent: **6** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **Use at least 2 Fragments**
-- [ ] **Create a new dashboard fragment where users can see a summary of their entered data**
-- [ ] **Use one of the Navigation UI Views (BottomNavigation, Drawer Layout, Top Bar) to move between the fragments**
+- [x] **Use at least 2 Fragments** (`LogListFragment` and `DashboardFragment`)
+- [x] **Create a new dashboard fragment where users can see a summary of their entered data**
+- [x] **Use one of the Navigation UI Views (BottomNavigationView, Drawer Layout, Top Bar) to move between the fragments**
 
 The following **optional** features are implemented:
 
-- [ ] **Add a more advanced UI (e.g: Graphing) for tracking trends in metrics**
-- [ ] **Implement daily notifications to prompt users to fill in their data**
+- [x] **Add a more advanced UI (e.g: Graphing / Trend breakdown) for tracking trends in metrics**
+- [x] **Implement daily notifications to prompt users to fill in their data**
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Photo picker integration for daily logs.
+- [x] Live Room Database observation using Kotlin Coroutines Flow across fragments.
+- [x] Custom Empty State UI.
 
 ## Video Walkthrough
 
@@ -29,20 +31,15 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
+GIF created with Kap / ScreenToGif.
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Navigating between fragments with BottomNavigationView while maintaining live Flow observations from Room DB was implemented smoothly using `viewLifecycleOwner`.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2026 David Mack
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
