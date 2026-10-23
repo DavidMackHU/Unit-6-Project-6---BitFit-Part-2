@@ -29,7 +29,11 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-blob:https://ezgif.com/c0c7ee46-be61-446f-825c-091630c15773
+
+
+
+<img width="270" height="480" alt="videogif" src="https://github.com/user-attachments/assets/dd7ca592-c1c9-44a2-a0fc-67db6a466d85" />
+
 
 GIF created with Kap / ScreenToGif.
 
